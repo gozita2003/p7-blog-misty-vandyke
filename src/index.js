@@ -1,17 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import {createStore, applyMiddleware} from "redux";
+import {composedWithDevTools} from "redux-devtools-extension";
+import {Provider} from "react-redux";
+import ReduxPromise from "redux-promise";
+import "bootstrap/dist/css/boostrap.min.css";
+import "./index.css";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+const store = createStor(rootReducer, {}, composedWithDevTools(applyMiddleware(ReduxPromise))
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reactDOM.render(
+	<Provider store = {store}>
+		<BrowserRouter>
+			<div>
+				<Switch>
+					<Route path = "/api/posts/new" component = {PostsNew} />
+					<Route path = "/api/posts" component = {PostsIndex} />
+					<Route exact path = "/" component = {PostsIndex} />
+				</Switch>
+			</div>
+		</BrowserRouter>
+	</Provider>,
+	document.getElementById("root")
+);
