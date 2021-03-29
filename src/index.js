@@ -1,23 +1,31 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {createStore, applyMiddleware} from "redux";
-import {composedWithDevTools} from "redux-devtools-extension";
-import {Provider} from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { Provider } from "react-redux";
 import ReduxPromise from "redux-promise";
-import "bootstrap/dist/css/boostrap.min.css";
+import PostsIndex from "./containers/posts_index";
+import PostsNew from "./containers/posts_new";
+import rootReducer from "./reducers";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 
-const store = createStor(rootReducer, {}, composedWithDevTools(applyMiddleware(ReduxPromise))
+
+const store = createStore(
+	rootReducer,
+	{},
+	composeWithDevTools(applyMiddleware(ReduxPromise))
 );
 
-reactDOM.render(
-	<Provider store = {store}>
+ReactDOM.render(
+	<Provider store={store}>
 		<BrowserRouter>
 			<div>
 				<Switch>
-					<Route path = "/api/posts/new" component = {PostsNew} />
-					<Route path = "/api/posts" component = {PostsIndex} />
-					<Route exact path = "/" component = {PostsIndex} />
+					<Route path="/api/posts/new" component={PostsNew} />
+					<Route path="/api/posts" component={PostsIndex} />
+					<Route exact path="/" component={PostsIndex} />
 				</Switch>
 			</div>
 		</BrowserRouter>
