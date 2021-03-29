@@ -1,15 +1,10 @@
-import _ from 'lodash';
+import _ from "lodash";
 import {FETCH_POSTS} from "../actions";
-import PostsReducer from "./reducer_posts";
 
-const rootReducer = combineReducers({
-	posts: PostsReducer
-});
-
-export default function (state={}, action){
-	switch(action.type){
+export default function(state = {}, action){
+	switch (action.type) {
 		case FETCH_POSTS:
-			return _.mapKeys(action.payload.data, '_id')
+			return _.mapKeys(action.payload.data, "_id");
 		default:
 			return state;
 	}
