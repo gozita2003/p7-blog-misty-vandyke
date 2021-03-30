@@ -4,7 +4,7 @@ import axios from "axios";
 export const FETCH_POSTS = "fetch_posts";
 export const CREATE_POST = "create_post";
 
-const ROOT_URL = "https://blog-server-misty-vandyke.herokuapp.com/api";
+const ROOT_URL = "http://blog-server-misty-vandyke.herokuapp.com/api";
 
 export function fetchPosts(){
 	const request = axios.get(`${ROOT_URL}/posts`);
